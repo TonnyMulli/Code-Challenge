@@ -1,12 +1,25 @@
 import React from "react";
 
-function Transaction() {
+function Transaction({ transaction, onDelete }) {
+  const { date, description, category, amount } = transaction;
+
+  const handleDeleteClick = () => {
+    if (onDelete && typeof onDelete === "function") {
+      onDelete(transaction);
+    } else {
+      console.error("onDelete is not a function or not provided");
+    }
+  };
+
   return (
     <tr>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
-      <td>{"your code here..."}</td>
+      <td>{date}</td>
+      <td>{description}</td>
+      <td>{category}</td>
+      <td>{amount}</td>
+      <td>
+        <button onClick={handleDeleteClick}>Delete</button>
+      </td>
     </tr>
   );
 }
